@@ -1,0 +1,21 @@
+import { VideoIcon } from 'lucide-react'
+
+interface ILessonProps {
+  title: string
+  duration: string
+}
+
+export function Lesson({ title, duration }: ILessonProps) {
+  return (
+    <button
+      className="flex items-center gap-3 text-sm text-zinc-400"
+      type="button"
+    >
+      <VideoIcon className="size-4 text-zinc-500" />
+      <span>{title}</span>
+      <span className="ml-auto font-mono text-xs text-zinc-500">
+        {duration}
+      </span>
+    </button>
+  )
+}

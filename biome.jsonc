@@ -9,6 +9,9 @@
   },
   "linter": {
     "rules": {
+      "nursery": {
+        "useConsistentTypeDefinitions": "off"
+      },
       "style": {
         "noNonNullAssertion": "off"
       }
