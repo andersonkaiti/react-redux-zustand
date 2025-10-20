@@ -1,3 +1,8 @@
+import {
+  CollapsibleContent,
+  CollapsibleTrigger,
+  Root,
+} from '@radix-ui/react-collapsible'
 import { ChevronDown } from 'lucide-react'
 import { Lesson } from './lesson'
 
@@ -9,9 +14,9 @@ interface IModuleProps {
 
 export function Module({ moduleIndex, title, amountOfLessons }: IModuleProps) {
   return (
-    <div>
-      <button
-        className="flex w-full items-center gap-3 bg-zinc-800 p-4"
+    <Root className="group">
+      <CollapsibleTrigger
+        className="flex w-full cursor-pointer items-center gap-3 bg-zinc-800 p-4"
         type="button"
       >
         <div className="flex size-10 items-center justify-center rounded-full bg-zinc-950 text-xs">
@@ -24,16 +29,18 @@ export function Module({ moduleIndex, title, amountOfLessons }: IModuleProps) {
           <span className="text-xs text-zinc-400">{amountOfLessons} aulas</span>
         </div>
 
-        <ChevronDown className="ml-auto size-4" />
-      </button>
+        <ChevronDown className="ml-auto size-4 transition group-data-[state=open]:rotate-180" />
+      </CollapsibleTrigger>
 
-      <nav className="relative flex flex-col gap-4 p-6">
-        <Lesson duration="10:00" title="Introdução ao Redux" />
+      <CollapsibleContent>
+        <nav className="relative flex flex-col gap-4 p-6">
+          <Lesson duration="10:00" title="Introdução ao Redux" />
 
-        <Lesson duration="08:32" title="Configuração Inicial" />
+          <Lesson duration="08:32" title="Configuração Inicial" />
 
-        <Lesson duration="12:47" title="Primeira Store" />
-      </nav>
-    </div>
+          <Lesson duration="12:47" title="Primeira Store" />
+        </nav>
+      </CollapsibleContent>
+    </Root>
   )
 }
