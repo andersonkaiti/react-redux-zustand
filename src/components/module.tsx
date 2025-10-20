@@ -4,7 +4,9 @@ import {
   Root,
 } from '@radix-ui/react-collapsible'
 import { useAppSelector } from '@store/index'
+import { play } from '@store/slices/player'
 import { ChevronDown } from 'lucide-react'
+import { useDispatch } from 'react-redux'
 import { Lesson } from './lesson'
 
 interface IModuleProps {
@@ -14,6 +16,8 @@ interface IModuleProps {
 }
 
 export function Module({ moduleIndex, title, amountOfLessons }: IModuleProps) {
+  const dispatch = useDispatch()
+
   const lessons = useAppSelector(
     (store) => store.player.course.modules[moduleIndex].lessons
   )
@@ -39,10 +43,11 @@ export function Module({ moduleIndex, title, amountOfLessons }: IModuleProps) {
 
       <CollapsibleContent>
         <nav className="relative flex flex-col gap-4 p-6">
-          {lessons?.map((lesson) => (
+          {lessons?.map((lesson, lessonIndex) => (
             <Lesson
               duration={lesson.duration}
               key={lesson.id}
+              onPlay={() => dispatch(play([moduleIndex, lessonIndex]))}
               title={lesson.title}
             />
           ))}

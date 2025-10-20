@@ -3,12 +3,14 @@ import { VideoIcon } from 'lucide-react'
 interface ILessonProps {
   title: string
   duration: string
+  onPlay: () => void
 }
 
-export function Lesson({ title, duration }: ILessonProps) {
+export function Lesson({ title, duration, onPlay }: ILessonProps) {
   return (
     <button
       className="flex items-center gap-3 text-sm text-zinc-400"
+      onClick={onPlay}
       type="button"
     >
       <VideoIcon className="size-4 text-zinc-500" />
